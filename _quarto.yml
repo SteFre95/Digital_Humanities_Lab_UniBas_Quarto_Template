@@ -1,0 +1,5 @@
+project:
+  output-dir: _output
+
+editor:
+  render-on-save: true

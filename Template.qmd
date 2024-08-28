@@ -1,0 +1,268 @@
+---
+# This part is the document header, containing settings for the document
+author:
+  - name:
+      family: "Lastname"
+      given: "Firstname"
+    orcid: 0000-0002-9300-9762 # Not included in the .pdf
+    affiliation: # Not included in the .pdf
+      - name: University of Basel
+        city: Basel
+        country: Switzerland
+        url: https://www.unibas.ch/en.html
+title: "Thesis / Paper Title"
+subtitle: "Thesis / Paper Subtitle"
+date: "2024-01-01"
+lang: "en-US" # This is used to set the language of the document. This affects e.g. the caption of images: Setting it to "de" turns "Figure 1" into "Abbildung 1" etc.
+keywords: # Not included in the .pdf
+  - List
+  - your
+  - keywords
+  - like
+  - this
+abstract: | 
+  This is the Quarto template from the DH Lab of the University of Basel. It is suitable for Seminar Papers and Master's / PhD theses, but can be adapted to fit a variety of use cases. It was created by Stefan Freitag with great help of Eric Dubey, whose Master's Thesis laid the groundwork for this template.
+
+  The abstract of your paper / thesis goes right here. It will appear on the cover sheet (very first page) of the PDF, together with the title, subtitle, author name and date.
+
+  If you do not want your document to have an abstract, you can also simple delete the 'abstract:' part with all its content and the final document will be rendered without it.
+papersize: a4
+documentclass: article
+fontsize: 12pt
+indent: true # Option to slightly indent the first line of a new paragraph
+linestretch: 1.5
+margin-left: 2.5cm
+margin-right: 2.5cm
+margin-top: 2cm
+margin-bottom: 2cm
+lof: false # Option to generate a list of figures
+lot: false # Option to generate a list of tables
+toc: true # Option to generate a table of contents
+toc-depth: 4 # Number of levels to include in the table of contents
+numbersections: true # Option to automatically number the sections of the document
+toc-title: "Table of Contents" # Title above the table of contents
+colorlinks: true # Option to automatically color embedded links
+pdf-engine: xelatex
+reference-section-title: "References" # Title above the 'References' section
+bibliography: "./assets/bib_template.bib" # Path to your bibliography file
+zotero: true # This enables you to directly use citations from Zotero
+citation: true
+google-scholar: true
+csl: "./assets/apa.csl" # File used for formatting references, both in-text and in the 'References' section. Here, the formatting according to APA is used. Other styles available at: https://www.zotero.org/styles
+nocite: | # Here, @* means that everything within the .bib file will be included in the 'References' section, even if it was not cited within the document
+  @*
+format:
+  html: # Options for .html output
+    reference-location: margin
+    code-fold: true
+    code-line-numbers: true
+    syntax-definitions: ["./assets/python.xml", "./assets/r.xml"] # Files to use to enable syntax highlighting in the final document. Not necessary for every language. Python and R are included here as examples. Other languages available at: https://github.com/KDE/syntax-highlighting/tree/master/data/syntax
+  pdf: # Options for .pdf output
+    keep-tex: true
+    block-headings: true
+    syntax-definitions: ["./assets/python.xml", "./assets/r.xml"] # Files to use to enable syntax highlighting in the final document. Not necessary for every language. Python and R are included here as examples. Other languages available at: https://github.com/KDE/syntax-highlighting/tree/master/data/syntax
+    template-partials:
+      - "./assets/before-body.tex" # This controls the look and behavior of the title page and abstract (written in TeX)
+      - "./assets/toc.tex" # This controls the look and behavior of the table of contents (written in TeX)
+# End of the document header
+---
+# The Basics
+
+What is Quarto? Quarto markets itself as "An open-source scientific and technical publishing system". In short, it offers a way to write articles, books or (in this case) papers and theses in markdown language. It enables a direct preview of your work and uses LaTeX for creating the final output, making it a powerful tool, if used correctly. In some ways, it is superior to writing exclusively in LaTeX, especially when working with code in the document.
+
+**Note**: This is **not** a guide on how to write a paper / thesis. If you need guidance on those topics, check the appropriate DH Lab [resources](https://dhlab.philhist.unibas.ch/en/master-course/seminar-masterarbeit-masterpruefung/) or ask a supervisor.
+
+Instead, this template is meant to introduce you to what Quarto can do and give you a starting point to use it on your own. You can use Quarto via VS Code, JupyterLab and RStudio, among others. This template covers the usage of Quarto with VS Code and JupyterLab, RStudio will not be covered, but information on that topic is available [here](https://quarto.org/docs/tools/rstudio.html). All of those options share the same features with slight differences in usage, so the choice is mostly a matter of personal preference.
+
+If you have questions that are not addressed within this template, Quarto offers a [tutorial](https://quarto.org/docs/get-started/) as well as a comprehensive [guide](https://quarto.org/docs/guide/). As you can already see in this chapter, you can put clickable links in your document.
+
+# Prerequisites
+
+Here, it is assumed you are starting fresh with basically nothing installed on your machine. If you have already installed Python, VSCode, Jupyter etc., you can simply skip the corresponding step.
+
+## General requirements
+
+- Download and install [Python](https://www.python.org/downloads/)
+
+- Download and install [Quarto](https://quarto.org/docs/download/)
+
+- Install the [jupyter package for Python](https://quarto.org/docs/computations/python.html#installation)
+
+You can check whether everything so far is working correctly by using the command `quarto check jupyter` in your terminal.
+
+To enable preview and export of your document as PDF, you also need to install TinyTeX:
+
+- Run the command `quarto install tinytex` in your terminal.
+
+## Using Quarto with VS Code
+
+- Download and install [VSCode](https://code.visualstudio.com/download)
+
+- Install the [VSCode Python Extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python). You can also find it by searching the extensions in VSCode for `Python`.
+
+- Install the [VSCode Quarto Extension](https://marketplace.visualstudio.com/items?itemName=quarto.quarto). You can also find it by searching the extensions in VSCode for `Quarto`.
+
+- Install the [VSCode Jupyter Extension](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter). You can also find it by searching the extensions in VSCode for `Jupyter`.
+
+- Open the `Template.qmd` or `Template.ipynb` file with VS Code, depending on your preferred formatting of the document file.
+
+For further information on using VS Code to write documents with Quarto (document preview, preview formats etc.), check [this](https://quarto.org/docs/tools/vscode.html) chapter of the guide.
+
+**Note**: The preview inside VS Code is **not** live! To see the impact of changes you have made to your document, you need to save the document file. Then, the preview will be rendered and refreshed. Also, if there are any issues with running commands including the document file, try giving the absolute path.
+
+## Using Quarto with JupyterLab
+
+- Launch JupyterLab using the command `jupyter lab` or `python3 -m jupyter lab` (only on Mac) in the terminal. **Note**: On some Windows installations this command might not work. Try `jupyter-lab` or `py -m jupyter lab` instead.
+
+- Open the `Template.ipynb` file with JupyterLab.
+
+For further information on using JupyterLab to write documents with Quarto (document preview, preview formats etc.), check [this](https://quarto.org/docs/tools/jupyter-lab.html) chapter of the guide.
+
+**Note**: The preview inside JupyterLab is **not** live! To see the impact of changes you have made to your document, you need to save the document file. Then, the preview will be rendered and refreshed. Also, if there are any issues with running commands including the document file, try giving the absolute path.
+
+## Switching between file formats
+
+If you, for example, start to write your document in `.qmd` with but then realize you like the look of a `.ipynb` file and want to switch, you do not have to start over. You can convert a `.qmd` file to `.ipynb` or vice versa using this command: `quarto convert X`. Replace the `X` with the file of your document you wish to convert.
+
+**Note**: Everything possible in one format is also possible in the other, the conversion is **lossless**! 
+
+**Important**: if you are saving a `.qmd` file to PDF while having a `.ipynb` with the same name as the `.qmd`, the `.ipynb` file **will** be deleted, so be careful!
+
+# Structure of a document
+
+The most important file when using Quarto is your **.qmd** (Quarto markdown) or **.ipynb** (Jupyter Notebook) file. This is the file in which you write the text for your paper / thesis. Both formats are functionally identical, but look different when editing. The choice is a matter of preference. 
+
+Each file starts with a header, in which you can change metadata and other settings of the document. Images, links, references, code etc. can be embedded within the document and will be rendered when the document is output. Pages are auto-numbered, starting after the table of contents.
+
+Let's go over the basic structure of a typical document:
+
+# This is a section
+
+## This is a sub-section
+
+### This is a sub-sub-section
+
+And so on. Up to 5 sublevels are possible. The table of contents will be automatically generated (including proper numbering and page numbers) upon exporting your document. **You do not need to write it yourself.**
+
+# Formatting your document
+
+Quarto supports a variety of formatting options:
+
+*You can write in italics.*
+
+**Or bold.**
+
+***Or both at the same time.***
+
+You can also superscript^text^ or subscript~text~
+
+You can also write lists (ordered or unordered):
+
+* Example list 
+1. first
+2. second
+3. third
+
+and use tables (with various formatting options):
+
+| Right | Left | Default | Center |
+|------:|:-----|---------|:------:|
+|   12  |  12  |    12   |    12  |
+|  123  |  123 |   123   |   123  |
+|    1  |    1 |     1   |     1  |
+
+It is possible to automatically generate a list of tables at the beginning of the document. To do this, set the `lot:` option in the document header to `true`.
+
+You can also insert page breaks like this:
+
+{{< pagebreak >}}
+
+These are only some examples, please see the full section in the [guide](https://quarto.org/docs/authoring/markdown-basics.html) for more.
+
+# Using images
+
+With Quarto, images are embedded within the text with a caption and a path to the image. This requires the images to be a local file on your computer. In this template, all images go into the `assets` folder.
+
+This is how an image is inserted into the document:
+
+![Logo of the DHLab](./assets/dhlab-logo-black.png)
+
+You can also resize images:
+
+![Logo of the DHLab, but smaller](./assets/dhlab-logo-black.png){width=300}
+
+As you can see, images with captions are numbered automatically. It is possible to generate a list of figures at the beginning of the document. To do this, set the `lof:` option in the document header to `true`.
+
+Once again, check the corresponding [guide section](https://quarto.org/docs/authoring/figures.html) for further information!
+
+# Using code
+
+When writing a paper or thesis in the field of Digital Humanities, it is likely that you will need to also use code within your document. Quarto supports this too, in the form of code cells:
+
+```{python}
+# This is a fully functional code cell
+for n in range(3):
+  print('This is a fully executable Python code cell! \n')
+```
+
+Code written this way can be fully executed within the .qmd or .ipynb file. When rendering the document, the code is included, together with its outputs, in the resulting document.
+
+**Note**: This behavior can be changed globally by adding `output: false` to the `pdf:` part of the document header. This way, you can have fully executable code cells in the document file without adding the output to the final PDF.
+
+You can also include code in this form (not executable):
+
+```python
+# This is not a functional code cell, but still recognized as Python
+for n in range(3):
+  print('This is not an executable code cell! \n')
+```
+
+Bear in mind that doing it this way will still give you automatic syntax highlighting! You can also do it like this to disable syntax highlighting:
+
+```
+# This is not a functional code cell and without highlighting
+for n in range(3):
+  print('This is not an executable code cell! \n')
+```
+
+Quarto supports some languages natively, but others will not have proper syntax highlighting after rendering. For that, you will have to use a `.xml` file, that defines the syntax for the render. This file goes into the `assets` folder and must be included in the header of the document. This is done by assigning these files to `syntax-definitions` in the header. In this template, XML files for Python and R are used to give you an example on how it works. XML files for a variety of languages can be found via [GitHub](https://github.com/KDE/syntax-highlighting/tree/master/data/syntax).
+
+For further information on working with code and computations, please refer to this section of the [guide](https://quarto.org/docs/computations/python.html).
+
+# References
+
+Citations and references to literature, websites and other things work like this:
+
+Authors X and Y say a lot of things about many topics [@abdullahlajamPerformanceEvaluationIPFS2021].
+
+These guys also talk about interesting stuff on certain pages [@alniamyAttributebasedAccessControl2020, pp. 136-139].
+
+This style of citation (footnotes) is also possible^[This guy [@gauthierReligionModernityGlobalisation2019] also talks about stuff].
+
+The same without further text in the footnote^[@gauthierReligionModernityGlobalisation2019].
+
+You can also reference other (sub) chapters from your document^[See for example [Using Images]]. This goes backwards **and** forwards, so you can reference chapters after the current one, like this^[[Exporting your document & further options]]. This of course only works if the chapters you are referring to are named correctly.
+
+The way references are formatted in the final document depends on the chosen `.csl` file in the document header. This template uses the APA-standard by default.
+
+Citations and references using literature are handled by the `.bib` (bibliography) file within the `assets` folder. It contains all your literature (in BibTeX format), which can then be referenced within the text.
+
+This file is also used to automatically generate the `References` section at the end of the final document. By default, it only includes literature that is actually referenced within the text. However, in this template, this default behavior is changed to include every entry in the `.bib` file, even those that are never referenced in the document itself.
+
+You can also include citations and references from Zotero in your document, as `zotero: true` is written in the header. This of course requires Zotero on your device.
+
+For more information about citations and references (and changing the behavior of the `References` section), see this part of the [guide](https://quarto.org/docs/authoring/footnotes-and-citations.html).
+
+# Exporting your document & further options
+
+After each save of the `.qmd` or `.ipynb` file, the document is rendered and saved. Normally, the finished PDF should be located within the `_output` folder. If it is not, check the main folder.
+
+You can also download the PDF directly from the preview, as you would do with any other PDF opened in a browser.
+
+Alternatively, you can also create a PDF by using this command:
+
+`quarto render Filename.qmd --to pdf`. If you are using a `.ipynb` file, change the command appropriately.
+
+As always, the [guide](https://quarto.org/docs/output-formats/pdf-basics.html) can help you with further questions. There are also many options to change the look and behavior of the resulting PDF. These go into the header of the document. You can find them [here](https://quarto.org/docs/reference/formats/pdf.html).
+
+{{< pagebreak >}}

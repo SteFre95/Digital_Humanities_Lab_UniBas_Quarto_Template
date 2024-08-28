@@ -1,0 +1,36 @@
+\pagenumbering{gobble}
+$if(has-frontmatter)$
+\frontmatter
+$endif$
+$if(title)$
+$if(beamer)$
+\frame{\titlepage}
+$else$
+\maketitle
+$endif$
+$if(abstract)$
+\begin{abstract}
+$abstract$
+\end{abstract}
+$endif$
+$endif$
+\begin{center}
+    \vfill
+    \begin{figure}
+        \centering
+        \begin{subfigure}{.3\textwidth}
+          \centering
+          \includegraphics[width=.8\linewidth]{./assets/uni-basel-logo-en.png}
+        \end{subfigure}%
+        \begin{subfigure}{.3\textwidth}
+          \centering
+          \includegraphics[width=.8\linewidth]{./assets/dhlab-logo-black.png}
+        \end{subfigure}
+        \end{figure}
+        \setcounter{figure}{0}
+        
+    University of Basel\\
+    Digital Humanities Lab\\
+    Switzerland
+\end{center}
+\newpage
